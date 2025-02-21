@@ -5,11 +5,12 @@
 
  import java.util.Scanner;
 
-public class RecursivePractice1 {
+public class recursivepractice1 {
     //No 2 Praktikum
     public static String genapRekursif(int a, int b) {
         if (a > b) {
-            return ""; // Base case: bila a lebih besar dari b maka berhenti
+            System.out.println("Angka awal harus lebih kecil dari Angka akhir"); 
+            return genapRekursif(a, b); // // Base case: bila a lebih besar dari b maka diulang
         }
         if (a % 2 != 0) {
             return genapRekursif(a + 1, b); // akan diabaikan ketika ganjil
@@ -17,7 +18,7 @@ public class RecursivePractice1 {
         return a + (a + 2 <= b ? ", " + genapRekursif(a + 2, b) : ""); //Lanjut rekursif 
     }
 
-    // No 4 Praktikum (Rekursif GCD)
+    // No 4 Praktikum (Rekursif )
     public static int gcd(int x, int y) {
         if (y <= x && x % y == 0) {
          return y; // Jika y <= x dan x mod y == 0, maka gcd(x, y) = y
@@ -30,15 +31,11 @@ public class RecursivePractice1 {
 
     // No 6 Praktikum (Membalikkan urutan)
     public static void urutBalik(int[] arr, int kiri, int kanan) {
-        if (kiri >= kanan) {
-            return; // Base case: Stop ketika indeks kiri lebih besar sama dngn indeks kanan
-        }
-        // Pergantian posisi antara angka di kiri dan kanan
+        if (kiri >= kanan) return; // Base case: berhenti jika kiri >= kanan
         int temp = arr[kiri];
         arr[kiri] = arr[kanan];
         arr[kanan] = temp;
-        // Panggil fungsi rekursif
-        urutBalik(arr, kiri + 1, kanan - 1);
+        urutBalik(arr, kiri + 1, kanan - 1); // Rekursi untuk membalikkan elemen selanjutnya
     }
 
     // Main 
@@ -46,22 +43,26 @@ public class RecursivePractice1 {
         Scanner scanner = new Scanner(System.in);
 
         // No 1 Ganjil ke Genap
-        System.out.print("Enter range (a, b) for even numbers: ");
+        System.out.println("==========================================================================================");
+        System.out.print("Masukkan dua buah angka, angka awal lebih kecil dari angka akhir, dengan spasi (a b): ");
         int a = scanner.nextInt();
         int b = scanner.nextInt();
-        System.out.println("Even numbers: " + genapRekursif(a, b));
+        System.out.println("");
+        System.out.println("Bilangan Genap dari " +a + " sampai " +b+ " adalah : " + genapRekursif(a, b));
+        System.out.println("==========================================================================================");
+        System.out.println("");
 
         // No 2 GCD
-        System.out.print("\nEnter two numbers for GCD: ");
+        System.out.print("\nMasukkan dua buah angka dengan spasi (x y) :");
         int x = scanner.nextInt();
         int y = scanner.nextInt();
-        System.out.println("GCD of " + x + " and " + y + " is: " + gcd(x, y));
+        System.out.println("Nilai Pembagi Terbesar (GCD) dari " + x + " dan " + y + " adalah: " + gcd(x, y));
 
         // No 3 Urutan Angka Dibalik
-        System.out.print("\nEnter the size of the array: ");
+        System.out.print("\nMasukkan Banyaknya Angka: ");
         int size = scanner.nextInt();
         int[] arr = new int[size];
-        System.out.println("Enter the elements of the array:");
+        System.out.println("Masukkan beberapa Angka, dengan spasi :");
         for (int i = 0; i < size; i++) {
             arr[i] = scanner.nextInt();
         }
@@ -69,7 +70,7 @@ public class RecursivePractice1 {
         urutBalik(arr, 0, size - 1); // panggil fungsi reverse/balik
 
         // Print the reversed array
-        System.out.print("Reversed array: ");
+        System.out.println("Urutan Angka diBalik dari belakang ke depan: ");
         for (int num : arr) {
             System.out.print(num + " ");
         }
